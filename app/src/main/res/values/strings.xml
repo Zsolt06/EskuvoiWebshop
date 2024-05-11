@@ -6,4 +6,69 @@
     <string name="registration">Regisztráció</string>
     <string name="email">E-mail cím</string>
     <string name="password_again">Jelszó megerősítése</string>
+    <string name="phone">Telefonszám</string>
+    <string name="address">Lakcím</string>
+    <string name="buyer">Vásárló</string>
+    <string name="seller">Eladó</string>
+    <string name="guestlogin">Bejelentkezés vendégként</string>
+    <string name="addtocart">Kosárba</string>
+    <string name="productname">Termék neve</string>
+    <string name="description">Leírás</string>
+    <string name="search">Keresés</string>
+    <string name="logout">Kijelentkezés</string>
+    <string name="settings">Beállítások</string>
+    <string name="cart">Kosár</string>
+    <string name="view">Nézet</string>
+
+    <string-array name="shopping_item_names">
+        <item>Smart Phone</item>
+        <item>Tablet</item>
+        <item>Gaming PC</item>
+        <item>Oled TV</item>
+        <item>Kerékpár</item>
+        <item>Lego</item>
+        <item>Jelmez</item>
+        <item>Sport eszközök</item>
+        <item>Konyhai eszközök</item>
+        <item>Bútor</item>
+    </string-array>
+
+    <string-array name="shopping_item_desc">
+        <item>Ez egy okos telefon!</item>
+        <item>Ez egy tablet!</item>
+        <item>Ez egy gamer pc!</item>
+        <item>Ez egy OLED TV!</item>
+        <item>Ez egy kerékpár!</item>
+        <item>Ez egy lego!</item>
+        <item>Ez egy jelmez!</item>
+        <item>Ezek sport eszközök!</item>
+        <item>Ezek konyhai eszküzök!</item>
+        <item>Ez egy bútor!</item>
+    </string-array>
+
+    <array name="shopping_item_images">
+        <item>@drawable/smart_phone</item>
+        <item>@drawable/tablet</item>
+        <item>@drawable/pc</item>
+        <item>@drawable/oled_tv</item>
+        <item>@drawable/bike</item>
+        <item>@drawable/lego</item>
+        <item>@drawable/custome</item>
+        <item>@drawable/sport_tools</item>
+        <item>@drawable/kitchen</item>
+        <item>@drawable/furniture</item>
+    </array>
+
+    <array name="shopping_item_price">
+        <item>10000 Ft</item>
+        <item>1500 Ft</item>
+        <item>5000 Ft</item>
+        <item>3000 Ft</item>
+        <item>1800 Ft</item>
+        <item>7000 Ft</item>
+        <item>2000 Ft</item>
+        <item>3000 Ft</item>
+        <item>1500 Ft</item>
+        <item>9000 Ft</item>
+    </array>
 </resources>
