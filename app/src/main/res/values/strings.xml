@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Webshop</string>
+    <string name="name">Felhasználónév</string>
+    <string name="password">Jelszó</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="registration">Regisztráció</string>
+    <string name="email">E-mail cím</string>
+    <string name="password_again">Jelszó megerősítése</string>
 </resources>
