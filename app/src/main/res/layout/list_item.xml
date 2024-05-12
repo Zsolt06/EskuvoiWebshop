@@ -39,8 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemDescription"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="4dp"
             android:padding="8dp"
+            android:textSize="18sp"
             android:textColor="@color/red"
             android:layout_centerHorizontal="true"/>
 

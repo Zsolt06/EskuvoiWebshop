@@ -78,7 +78,7 @@ public class WebshopListActivity extends AppCompatActivity {
     private void queryData() {
         mItemList.clear();
 
-        mItems.orderBy("name").get().addOnSuccessListener(queryDocumentSnapshots -> {
+        mItems.orderBy("name").limit(8).get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                 ShopingItem item = document.toObject(ShopingItem.class);
                 item.setId(document.getId());
