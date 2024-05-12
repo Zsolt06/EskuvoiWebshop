@@ -14,9 +14,17 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegistrationActivity.class.getName();
@@ -86,6 +94,12 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Sikeres regisztráció!");
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                    if (currentUser != null) {
+                        saveUserDataToFirestore(currentUser.getUid(), username, email, phone, address, accountType);
+                    }
+
                     startShopping();
                 } else {
                     Log.e(LOG_TAG, "Sikertelen regisztráció!");
@@ -93,6 +107,33 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Create
+    private void saveUserDataToFirestore(String userId, String username, String email, String phone, String address, String accountType) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("Users").document(userId);
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("username", username);
+        userData.put("email", email);
+        userData.put("phone", phone);
+        userData.put("address", address);
+        userData.put("accountType", accountType);
+
+        userRef.set(userData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(LOG_TAG, "Felhasználói adatok hozzáadva a Firestore-hoz!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(LOG_TAG, "Hiba a felhasználói adatok hozzáadásával a Firestore-hoz: " + e.getMessage());
+                    }
+                });
     }
 
     private void startShopping() {

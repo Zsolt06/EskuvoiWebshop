@@ -58,17 +58,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" />
 
-    <Button
-        android:id="@+id/guestLoginButton"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacer"
-        android:onClick="loginAsGuest"
-        android:text="@string/guestlogin"
-        app:layout_constraintBottom_toTopOf="@+id/registerButtonLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+<!--    <Button-->
+<!--        android:id="@+id/guestLoginButton"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/spacer"-->
+<!--        android:onClick="loginAsGuest"-->
+<!--        android:text="@string/guestlogin"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/registerButtonLogin"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/loginButton" />-->
 
     <Button
         android:id="@+id/registerButtonLogin"
@@ -79,5 +79,5 @@
         android:text="@string/registration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guestLoginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

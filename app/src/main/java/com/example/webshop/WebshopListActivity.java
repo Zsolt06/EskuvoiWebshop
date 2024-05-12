@@ -10,22 +10,31 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
 public class WebshopListActivity extends AppCompatActivity {
     private static final String LOG_TAG = WebshopListActivity.class.getName();
-
     private FirebaseUser user;
     private RecyclerView mRecyclerView;
     private ArrayList<ShopingItem> mItemList;
     private ShopingItemAdapter mAdapter;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mItems;
     private int gridNumber = 1;
     private boolean viewRow = false;
+    private String currentUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,7 @@ public class WebshopListActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Log.d(LOG_TAG, "Autentikált felhasználó");
+            getCurrentUserType();
         } else {
             Log.d(LOG_TAG, "Nem autentikált felhasználó");
             finish();
@@ -43,27 +53,68 @@ public class WebshopListActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
         mItemList = new ArrayList<>();
-        mAdapter = new ShopingItemAdapter(this, mItemList);
+        mAdapter = new ShopingItemAdapter(this, mItemList, currentUserType);
         mRecyclerView.setAdapter(mAdapter);
 
-        initailizeData();
+        mFirestore = FirebaseFirestore.getInstance();
+        mItems = mFirestore.collection("Items");
+
+        queryData();
     }
 
-    private void initailizeData() {
-        String[] itemList = getResources().getStringArray(R.array.shopping_item_names);
-        String[] itemDescription = getResources().getStringArray(R.array.shopping_item_desc);
-        String[] itemPrice = getResources().getStringArray(R.array.shopping_item_price);
-        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
+    private void getCurrentUserType() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("Users").document(user.getUid());
+        userRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                currentUserType = documentSnapshot.getString("accountType");
+                Log.d(LOG_TAG, "A felhasználó egy: " + currentUserType);
+                mAdapter.setCurrentUserType(currentUserType);
+            }
+        }).addOnFailureListener(e -> Log.e(LOG_TAG, "Hiba a felhasználói adatok lekérésekor: " + e.getMessage()));
+    }
 
+    // Read
+    private void queryData() {
         mItemList.clear();
 
-        for (int i = 0; i < itemList.length; i++) {
-            mItemList.add(new ShopingItem(itemList[i], itemDescription[i], itemPrice[i], itemsImageResource.getResourceId(i, 0)));
+        mItems.orderBy("name").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                ShopingItem item = document.toObject(ShopingItem.class);
+                item.setId(document.getId());
+                mItemList.add(item);
+            }
+
+            if (mItemList.isEmpty()){
+                initailizeData();
+                queryData();
+            }
+
+            mAdapter.notifyDataSetChanged();
+        });
+    }
+
+    // Delete
+    public void deleteItem(ShopingItem item) {
+        DocumentReference itemRef = mItems.document(item._getId());
+        itemRef.delete().addOnSuccessListener(success -> {
+            Log.d(LOG_TAG, "Tétel törölve: " + item._getId());
+            queryData();
+        }).addOnFailureListener(e -> Toast.makeText(this, "A terméket " + item._getId() + "nem lehetett törölni!", Toast.LENGTH_SHORT).show());
+    }
+
+    // Initialize data
+    private void initailizeData() {
+        String[] itemsList = getResources().getStringArray(R.array.shopping_item_names);
+        String[] itemsDescription = getResources().getStringArray(R.array.shopping_item_desc);
+        String[] itemsPrice = getResources().getStringArray(R.array.shopping_item_price);
+        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
+
+        for (int i = 0; i < itemsList.length; i++) {
+            mItems.add(new ShopingItem(itemsList[i], itemsDescription[i], itemsPrice[i], itemsImageResource.getResourceId(i, 0)));
         }
 
         itemsImageResource.recycle();
-
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -94,9 +145,6 @@ public class WebshopListActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             finish();
             return true;
-        } else if (id == R.id.settings) {
-            Log.d(LOG_TAG, "Beállítások menüpont kiválasztva!");
-            return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Kosár menüpont kiválasztva!");
             return true;
@@ -115,6 +163,10 @@ public class WebshopListActivity extends AppCompatActivity {
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
         item.setIcon(drawableId);
+
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.slide_row);
+        mRecyclerView.startAnimation(animation);
+
         GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
         layoutManager.setSpanCount(spanCount);
     }

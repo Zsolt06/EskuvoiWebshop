@@ -58,21 +58,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void loginAsGuest(View view) {
-        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(LOG_TAG, "Sikeres vendég bejelentkezés!");
-                    startShopping();
-                } else {
-                    Log.d(LOG_TAG, "Sikertelen vendég bejelentkezés!");
-                    Toast.makeText(MainActivity.this, "Sikertelen vendég bejelentkezés: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
     private void startShopping() {
         Intent intent = new Intent(this, WebshopListActivity.class);
         startActivity(intent);

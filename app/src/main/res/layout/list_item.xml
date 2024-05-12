@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/itemTitle"
-            style="@style/ItemDetailText"
+            style="@style/ItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemImage"
@@ -50,6 +50,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/itemPrice"
             android:text="@string/addtocart"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addToCart"
+            android:backgroundTint="@color/red"
+            android:text="@string/delete"
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>

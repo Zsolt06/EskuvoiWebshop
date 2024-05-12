@@ -19,6 +19,7 @@
     <string name="settings">Beállítások</string>
     <string name="cart">Kosár</string>
     <string name="view">Nézet</string>
+    <string name="delete">Törlés</string>
 
     <string-array name="shopping_item_names">
         <item>Smart Phone</item>

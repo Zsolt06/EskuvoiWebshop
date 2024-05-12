@@ -18,11 +18,8 @@
         android:icon="@drawable/grid_view"
         app:showAsAction="always" />
     <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/logout"
         android:title="@string/logout"
-        app:showAsAction="never" />
+        android:icon="@drawable/logout"
+        app:showAsAction="always" />
 </menu>

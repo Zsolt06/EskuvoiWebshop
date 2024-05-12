@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -24,11 +25,18 @@ public class ShopingItemAdapter extends RecyclerView.Adapter<ShopingItemAdapter.
     private ArrayList<ShopingItem> ShopingItemsDataAll;
     private Context context;
     private int lastPosition = -1;
+    private String currentUserType;
 
-    ShopingItemAdapter(Context context, ArrayList<ShopingItem> itemsData) {
+    public void setCurrentUserType(String userType) {
+        this.currentUserType = userType;
+        notifyDataSetChanged();
+    }
+
+    ShopingItemAdapter(Context context, ArrayList<ShopingItem> itemsData, String currentUserType) {
         this.ShopingItemsData = itemsData;
         this.ShopingItemsDataAll = itemsData;
         this.context = context;
+        this.currentUserType = currentUserType;
     }
 
     @NonNull
@@ -95,14 +103,16 @@ public class ShopingItemAdapter extends RecyclerView.Adapter<ShopingItemAdapter.
         private TextView DescriptionText;
         private TextView PriceText;
         private ImageView ItemImage;
+        private Button deleteButton;
 
-        public ViewHolder(View itemView) {
+         ViewHolder(View itemView) {
             super(itemView);
 
             TitleText = itemView.findViewById(R.id.itemTitle);
             DescriptionText = itemView.findViewById(R.id.itemDescription);
             PriceText = itemView.findViewById(R.id.itemPrice);
             ItemImage = itemView.findViewById(R.id.itemImage);
+            deleteButton = itemView.findViewById(R.id.delete);
 
             itemView.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,8 +127,14 @@ public class ShopingItemAdapter extends RecyclerView.Adapter<ShopingItemAdapter.
             TitleText.setText(currentItem.getName());
             DescriptionText.setText(currentItem.getDescription());
             PriceText.setText(currentItem.getPrice());
-
             Glide.with(context).load(currentItem.getImageResource()).into(ItemImage);
+
+            if (currentUserType.equals("Eladó")) {
+                deleteButton.setVisibility(View.VISIBLE);
+                itemView.findViewById(R.id.delete).setOnClickListener(view -> ((WebshopListActivity) context).deleteItem(currentItem));
+            } else {
+                deleteButton.setVisibility(View.GONE);
+            }
         }
     }
 }
