@@ -12,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +49,6 @@ public class ShopingItemAdapter extends RecyclerView.Adapter<ShopingItemAdapter.
     @Override
     public void onBindViewHolder(ShopingItemAdapter.ViewHolder holder, int position) {
         ShopingItem currentItem = ShopingItemsData.get(position);
-
         holder.bindTo(currentItem);
 
         if (holder.getAdapterPosition() > lastPosition) {
@@ -114,14 +114,19 @@ public class ShopingItemAdapter extends RecyclerView.Adapter<ShopingItemAdapter.
             ItemImage = itemView.findViewById(R.id.itemImage);
             deleteButton = itemView.findViewById(R.id.delete);
 
-            itemView.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("Activity", "Termék hozzáadva a kosárhoz!");
-                }
+             itemView.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Toast.makeText(context, "Termék hozzáadva a kosárhoz!", Toast.LENGTH_SHORT).show();
 
-            });
-        }
+                     Log.d("Activity", "Termék hozzáadva a kosárhoz!");
+
+                     Animation animation = AnimationUtils.loadAnimation(context, R.anim.add_to_cart);
+                     itemView.startAnimation(animation);
+                 }
+             });
+
+         }
 
         public void bindTo(ShopingItem currentItem) {
             TitleText.setText(currentItem.getName());

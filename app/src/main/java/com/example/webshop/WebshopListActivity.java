@@ -147,6 +147,7 @@ public class WebshopListActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Kosár menüpont kiválasztva!");
+            Toast.makeText(this, "Megrendelés sikeres!", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.view) {
             Log.d(LOG_TAG, "Nézet menüpont kiválasztva!");

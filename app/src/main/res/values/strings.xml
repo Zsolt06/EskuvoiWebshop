@@ -22,54 +22,54 @@
     <string name="delete">Törlés</string>
 
     <string-array name="shopping_item_names">
-        <item>Smart Phone</item>
-        <item>Tablet</item>
-        <item>Gaming PC</item>
-        <item>Oled TV</item>
-        <item>Kerékpár</item>
-        <item>Lego</item>
-        <item>Jelmez</item>
-        <item>Sport eszközök</item>
-        <item>Konyhai eszközök</item>
-        <item>Bútor</item>
+        <item>Asztalszám</item>
+        <item>Tortadísz</item>
+        <item>Lufi</item>
+        <item>Székmasni</item>
+        <item>Vendégkönyv</item>
+        <item>Konfetti</item>
+        <item>Rózsaszirom</item>
+        <item>Gyűrűpánra</item>
+        <item>Toll</item>
+        <item>Fa karika dekoráció</item>
     </string-array>
 
     <string-array name="shopping_item_desc">
-        <item>Ez egy okos telefon!</item>
-        <item>Ez egy tablet!</item>
-        <item>Ez egy gamer pc!</item>
-        <item>Ez egy OLED TV!</item>
-        <item>Ez egy kerékpár!</item>
-        <item>Ez egy lego!</item>
-        <item>Ez egy jelmez!</item>
-        <item>Ezek sport eszközök!</item>
-        <item>Ezek konyhai eszküzök!</item>
-        <item>Ez egy bútor!</item>
+        <item>Fekete asztalszámok, fa pálcikán. 0 és 9 közötti számokkal (1-től 10-ig számozhatók velük az asztalok).</item>
+        <item>Elegáns, fekete sziluett tortadísz, Mr és Mrs felirattal.</item>
+        <item>Óriás kerek lufi, fekete Mr felirattal, kb. 1 méter átmérőjű (0,4 m3 hélium szükséges a feltöltéséhez).</item>
+        <item>Arany színű szatén székmasni.</item>
+        <item>Esküvői vendégkönyv, púderrózsaszín borítóval és rose gold színű „for sweet memories" felirattal. 22 lapot (44 üres oldalt) tartalmaz.</item>
+        <item>Arany papír csillagokat kilövő konfetti ágyú.</item>
+        <item>Bordó színű, bordázott rózsaszirom. 100 db-os csomagban rendelhető.</item>
+        <item>Fehér színű gyűrűpárna, fehér csipkével, barna masnival és apró rózsa díszítéssel.</item>
+        <item>Elegáns tollkészlet az esküvői szertartáshoz vagy az esküvői vendégkönyv mellé. A toll talapzata fehér színű.</item>
+        <item>Mr és Mrs feliratú kerek függő dekoráció fából, amely ízlés szerint festhető vagy díszíthető. Használhatod háttér dekorációnak, a székre akasztva vagy autó dekorációként is.</item>
     </string-array>
 
     <array name="shopping_item_images">
-        <item>@drawable/smart_phone</item>
-        <item>@drawable/tablet</item>
-        <item>@drawable/pc</item>
-        <item>@drawable/oled_tv</item>
-        <item>@drawable/bike</item>
-        <item>@drawable/lego</item>
-        <item>@drawable/custome</item>
-        <item>@drawable/sport_tools</item>
-        <item>@drawable/kitchen</item>
-        <item>@drawable/furniture</item>
+        <item>@drawable/asztalszam</item>
+        <item>@drawable/tortadisz</item>
+        <item>@drawable/lufi</item>
+        <item>@drawable/szekmasni</item>
+        <item>@drawable/vendegkonyv</item>
+        <item>@drawable/konfetti</item>
+        <item>@drawable/rozsaszirom</item>
+        <item>@drawable/gyuruparna</item>
+        <item>@drawable/toll</item>
+        <item>@drawable/dekoracio</item>
     </array>
 
     <array name="shopping_item_price">
-        <item>10000 Ft</item>
-        <item>1500 Ft</item>
-        <item>5000 Ft</item>
-        <item>3000 Ft</item>
-        <item>1800 Ft</item>
-        <item>7000 Ft</item>
-        <item>2000 Ft</item>
-        <item>3000 Ft</item>
-        <item>1500 Ft</item>
-        <item>9000 Ft</item>
+        <item>2490 Ft</item>
+        <item>2990 Ft</item>
+        <item>1490 Ft</item>
+        <item>690 Ft</item>
+        <item>7990 Ft</item>
+        <item>1890 Ft</item>
+        <item>690 Ft</item>
+        <item>5990 Ft</item>
+        <item>3290 Ft</item>
+        <item>7990 Ft</item>
     </array>
 </resources>
