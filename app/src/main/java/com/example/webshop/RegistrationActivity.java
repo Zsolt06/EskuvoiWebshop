@@ -55,8 +55,8 @@ public class RegistrationActivity extends AppCompatActivity {
         accountTypeRG.check(R.id.buyerRadioButton);
 
         preferences = getSharedPreferences(PREFS_KEY, MODE_PRIVATE);
-        String userName = preferences.getString("userName", "");
-        userNameET.setText(userName);
+        String email = preferences.getString("email", "");
+        userEmailET.setText(email);
 
         mAuth = FirebaseAuth.getInstance();
 

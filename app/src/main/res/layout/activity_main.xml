@@ -15,27 +15,27 @@
         android:layout_marginTop="40dp"
         android:text="@string/login"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextUserName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextUserName"
+        android:id="@+id/editTextEmailLogin"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacer"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTextView"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextPasswordLogin"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacer"
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin" />
 
     <Button
         android:id="@+id/loginButton"
@@ -56,7 +56,7 @@
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" />
 
     <Button
         android:id="@+id/guestLoginButton"
@@ -65,13 +65,13 @@
         android:layout_marginTop="@dimen/spacer"
         android:onClick="loginAsGuest"
         android:text="@string/guestlogin"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintBottom_toTopOf="@+id/registerButtonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/registerButtonLogin"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacer"
